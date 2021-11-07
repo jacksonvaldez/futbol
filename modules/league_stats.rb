@@ -14,7 +14,7 @@ module LeagueStats
     end
 
     best_team_id = total_goals_by_team.max_by do |_,goals|
-      goals.sum / goals.length
+      goals.sum.to_f / goals.length
     end
     creator.teams_hash[best_team_id.first.to_s].team_name
   end
@@ -29,7 +29,7 @@ module LeagueStats
     end
 
     worst_team_id = total_goals_by_team.min_by do |_,goals|
-      goals.sum / goals.length
+      goals.sum.to_f / goals.length
     end
     creator.teams_hash[worst_team_id.first.to_s].team_name
   end
@@ -42,7 +42,7 @@ module LeagueStats
     end
 
     best_team_id = total_goals_by_team.max_by do |_,goals|
-      goals.sum / goals.length
+      goals.sum.to_f / goals.length
     end
     creator.teams_hash[best_team_id.first.to_s].team_name
   end
@@ -55,7 +55,7 @@ module LeagueStats
     end
 
     best_team_id = total_goals_by_team.max_by do |_,goals|
-      goals.sum / goals.length
+      goals.sum.to_f / goals.length
     end
     creator.teams_hash[best_team_id.first.to_s].team_name
   end
@@ -68,7 +68,7 @@ module LeagueStats
     end
 
     worst_team_id = total_goals_by_team.min_by do |_,goals|
-      goals.sum / goals.length
+      goals.sum.to_f / goals.length
     end
     creator.teams_hash[worst_team_id.first.to_s].team_name
   end
@@ -81,7 +81,7 @@ module LeagueStats
     end
 
     worst_team_id = total_goals_by_team.min_by do |_,goals|
-      goals.sum / goals.length
+      goals.sum.to_f / goals.length
     end
     creator.teams_hash[worst_team_id.first.to_s].team_name
   end
