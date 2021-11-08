@@ -22,7 +22,7 @@ RSpec.describe TGStat do
   let!(:game_team_data){stat_tracker.game_team_data}
   let(:tg_stat1) { TGStat.new(game_team_data[0]) }
   let(:tg_stat9) { TGStat.new(game_team_data[9]) }
-  
+
   describe '#initialize' do
     it 'exists' do
       expect(tg_stat1).to be_instance_of(TGStat)

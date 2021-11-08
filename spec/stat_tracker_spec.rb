@@ -1,5 +1,4 @@
 # require 'simplecov'
-
 # SimpleCov.start
 # SimpleCov.command_name 'Unit Tests'
 require_relative '../spec/spec_helper'
@@ -94,7 +93,7 @@ RSpec.describe StatTracker do
       end
 
       it "percentage_ties" do
-        expect(stattracker.percentage_ties).to eq(0.1)
+        expect(stattracker.percentage_ties).to eq(0.05)
       end
 
       it "count_of_games_by_season" do
@@ -138,11 +137,17 @@ RSpec.describe StatTracker do
 
     describe '#average_win_percentage' do
       it "returns the average win/loss percentage for the team id given" do
-        expect(stattracker.average_win_percentage("6")).to eq 100.0
+        expect(stattracker.average_win_percentage("6")).to eq 1.0
       end
     end
 
-    describe '#least_goals_scored' do
+    describe '#most_goals_scored' do
+      it "returns the least goals scored for the team id given" do
+        expect(stattracker.most_goals_scored("6")).to eq 4
+      end
+    end
+
+    describe '#fewest_goals_scored' do
       it "returns the least goals scored for the team id given" do
         expect(stattracker.fewest_goals_scored("6")).to eq 1
       end
