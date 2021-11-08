@@ -1,15 +1,16 @@
 require_relative './tg_stat'
 require_relative './game'
 require_relative './team'
-# commented these out, spec still runs
-class Creator
-  attr_reader :teams_hash, :seasons_hash, :stats_hash, :games_hash
 
-  def initialize(teams_hash, seasons_hash, stats_hash, games_hash)
+class Creator
+  attr_reader :teams_hash, :seasons_hash, :stats_hash, :games_hash, :total_goals_by_team
+
+  def initialize(teams_hash, seasons_hash, stats_hash, games_hash, total_goals_by_team)
     @teams_hash = teams_hash
     @seasons_hash = seasons_hash
     @stats_hash = stats_hash
     @games_hash = games_hash
+    @total_goals_by_team = total_goals_by_team
   end
 
   def self.create_objects(game_data, team_data, game_team_data)
@@ -17,8 +18,9 @@ class Creator
     games_hash = self.game_obj_creator(game_data, stats_hash)
     seasons_hash = self.season_obj_creator(games_hash)
     teams_hash = self.team_obj_creator(team_data, games_hash)
+    total_goals_by_team = self.total_goals_by_team(games_hash)
 
-    self.new(teams_hash, seasons_hash, stats_hash, games_hash)
+    self.new(teams_hash, seasons_hash, stats_hash, games_hash, total_goals_by_team)
   end
 
   def self.stat_obj_creator(game_team_data)
@@ -46,12 +48,6 @@ class Creator
     end
   end
 
-  # def self.postseason_obj_creator
-  #   season_type_hash = games_hash.values.group_by do |game|
-  #     game.type
-  #   end
-  # end
-
   def self.team_obj_creator(team_data, games_hash)
     teams_hash = {}
     team_data.each do |team|
@@ -62,4 +58,15 @@ class Creator
     end
     teams_hash
   end
+end
+
+def self.total_goals_by_team(games_hash)
+  total_goals_by_team = {}
+  games_hash.each_value do |game|
+    total_goals_by_team[game.away_team_id.to_sym] ||= [[],[]]
+    total_goals_by_team[game.home_team_id.to_sym] ||= [[],[]]
+    total_goals_by_team[game.away_team_id.to_sym][0] << game.away_goals
+    total_goals_by_team[game.home_team_id.to_sym][1] << game.home_goals
+  end
+  total_goals_by_team
 end
