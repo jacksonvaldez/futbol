@@ -122,7 +122,7 @@ RSpec.describe Creator do
 
       expect(teams_hash["17"]).to be_a(Team)
     end
-    
+
     it 'team object matches its game_team object identifier' do
       stats_hash = Creator.stat_obj_creator(game_team_data)
       games_hash = Creator.game_obj_creator(game_data, stats_hash)

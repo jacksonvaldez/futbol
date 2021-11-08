@@ -2,11 +2,11 @@ require 'simplecov'
 
 SimpleCov.start
 SimpleCov.command_name 'Unit Tests'
-require_relative './lib/tg_stat'
-require_relative './lib/creator'
-require_relative './lib/stat_tracker'
-require_relative './lib/game'
-require_relative './lib/team'
+require './lib/tg_stat'
+require './lib/creator'
+require './lib/stat_tracker'
+require './lib/game'
+require './lib/team'
 
 RSpec.describe StatTracker do
   let!(:game_path)       {'./spec/fixtures/spec_games.csv'}
@@ -93,7 +93,7 @@ RSpec.describe StatTracker do
       end
 
       it "percentage_ties" do
-        expect(stattracker.percentage_ties).to eq(0.1)
+        expect(stattracker.percentage_ties).to eq(0.05)
       end
 
       it "count_of_games_by_season" do
