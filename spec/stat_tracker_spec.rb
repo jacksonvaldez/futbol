@@ -1,12 +1,12 @@
-require 'simplecov'
-
-SimpleCov.start
-SimpleCov.command_name 'Unit Tests'
-require './lib/tg_stat'
-require './lib/creator'
-require './lib/stat_tracker'
-require './lib/game'
-require './lib/team'
+# require 'simplecov'
+# SimpleCov.start
+# SimpleCov.command_name 'Unit Tests'
+require_relative '../spec/spec_helper'
+require_relative '../lib/tg_stat'
+require_relative '../lib/creator'
+require_relative '../lib/stat_tracker'
+require_relative '../lib/game'
+require_relative '../lib/team'
 
 RSpec.describe StatTracker do
   let!(:game_path)       {'./spec/fixtures/spec_games.csv'}
@@ -137,11 +137,17 @@ RSpec.describe StatTracker do
 
     describe '#average_win_percentage' do
       it "returns the average win/loss percentage for the team id given" do
-        expect(stattracker.average_win_percentage("6")).to eq 100.0
+        expect(stattracker.average_win_percentage("6")).to eq 1.0
       end
     end
 
-    describe '#least_goals_scored' do
+    describe '#most_goals_scored' do
+      it "returns the least goals scored for the team id given" do
+        expect(stattracker.most_goals_scored("6")).to eq 4
+      end
+    end
+
+    describe '#fewest_goals_scored' do
       it "returns the least goals scored for the team id given" do
         expect(stattracker.fewest_goals_scored("6")).to eq 1
       end
@@ -159,4 +165,31 @@ RSpec.describe StatTracker do
       end
     end
   end
+
+  describe 'Season Stats' do
+    it "#winningest_coach" do
+      expect(stattracker.winningest_coach("20122013")).to eq "Claude Julien"
+    end
+
+    it "#worst_coach" do
+      expect(stattracker.worst_coach("20122013")).to eq "John Tortorella"
+    end
+
+    it "#most_accurate_team" do
+      expect(stattracker.most_accurate_team("20122013")).to eq "New York City FC"
+    end
+
+    it "#least_accurate_team" do
+      expect(stattracker.least_accurate_team("20122013")).to eq "Sporting Kansas City"
+    end
+
+    it "#most_tackles" do
+      expect(stattracker.most_tackles("20122013")).to eq "FC Dallas"
+    end
+
+    it "#fewest_tackles" do
+      expect(stattracker.fewest_tackles("20122013")).to eq "Sporting Kansas City"
+    end
+  end
+
 end

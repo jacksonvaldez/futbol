@@ -1,11 +1,13 @@
-require 'simplecov'
-SimpleCov.start
-SimpleCov.command_name 'Unit Tests'
-require './lib/tg_stat'
-require './lib/creator'
-require './lib/stat_tracker'
-require './lib/game'
-require './lib/team'
+# require 'simplecov'
+# SimpleCov.start
+# SimpleCov.command_name 'Unit Tests'
+
+require_relative './spec_helper'
+require_relative '../lib/tg_stat'
+require_relative '../lib/creator'
+require_relative '../lib/stat_tracker'
+require_relative '../lib/game'
+require_relative '../lib/team'
 
 RSpec.describe Creator do
   let!(:stat_tracker) do
@@ -35,6 +37,7 @@ RSpec.describe Creator do
       expect(creator.seasons_hash).to be_a(Hash)
       expect(creator.stats_hash).to be_a(Hash)
       expect(creator.games_hash).to be_a(Hash)
+      expect(creator.total_goals_by_team_hash).to be_a(Hash)
     end
   end
 
@@ -130,6 +133,25 @@ RSpec.describe Creator do
 
       expect(teams_hash["6"].team_id).to eq(teams_hash["6"].game_objects[0].home_team_id)
       expect(teams_hash["3"].team_id).to eq(teams_hash["3"].game_objects[0].away_team_id)
+    end
+  end
+
+  describe '#self.total_goals_by_team' do
+    it 'creates a hash' do
+      stats_hash = Creator.stat_obj_creator(game_team_data)
+      games_hash = Creator.game_obj_creator(game_data, stats_hash)
+
+      expect(Creator.total_goals_by_team(games_hash)).to be_a(Hash)
+    end
+
+    it 'creates a hash of a teams away and home goals in arrays' do
+      stats_hash = Creator.stat_obj_creator(game_team_data)
+      games_hash = Creator.game_obj_creator(game_data, stats_hash)
+      total_goals_by_team_hash = Creator.total_goals_by_team(games_hash)
+      expected_away = [2, 3, 3, 4]
+      expected_home = [3, 3, 3, 2, 1]
+      expect(creator.total_goals_by_team_hash[:'6'][0]).to eq(expected_away)
+      expect(creator.total_goals_by_team_hash[:'6'][1]).to eq(expected_home)
     end
   end
 end

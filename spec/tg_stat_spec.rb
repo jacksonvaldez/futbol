@@ -1,9 +1,10 @@
-require 'simplecov'
-SimpleCov.start
-SimpleCov.command_name 'Team Game(TG) Stat Class Tests'
-require './lib/tg_stat'
-require './lib/stat_tracker'
-require './lib/creator'
+# require 'simplecov'
+# SimpleCov.start
+# SimpleCov.command_name 'Team Game(TG) Stat Class Tests'
+require_relative './spec_helper'
+require_relative '../lib/tg_stat'
+require_relative '../lib/stat_tracker'
+require_relative '../lib/creator'
 
 RSpec.describe TGStat do
   let!(:stat_tracker) do
