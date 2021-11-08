@@ -2,7 +2,7 @@
 
 # SimpleCov.start
 # SimpleCov.command_name 'Unit Tests'
-require_relative '../spec_helper'
+require_relative '../spec/spec_helper'
 require_relative '../lib/tg_stat'
 require_relative '../lib/creator'
 require_relative '../lib/stat_tracker'

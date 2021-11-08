@@ -37,7 +37,7 @@ RSpec.describe Creator do
       expect(creator.seasons_hash).to be_a(Hash)
       expect(creator.stats_hash).to be_a(Hash)
       expect(creator.games_hash).to be_a(Hash)
-      expect(creator.total_goals_by_team).to be_a(Hash)
+      expect(creator.total_goals_by_team_hash).to be_a(Hash)
     end
   end
 
@@ -125,7 +125,7 @@ RSpec.describe Creator do
 
       expect(teams_hash["17"]).to be_a(Team)
     end
-    
+
     it 'team object matches its game_team object identifier' do
       stats_hash = Creator.stat_obj_creator(game_team_data)
       games_hash = Creator.game_obj_creator(game_data, stats_hash)
@@ -141,18 +141,17 @@ RSpec.describe Creator do
       stats_hash = Creator.stat_obj_creator(game_team_data)
       games_hash = Creator.game_obj_creator(game_data, stats_hash)
 
-      expect(Creator.total_goals_by_team_hash(games_hash)).to be_a(Hash)
+      expect(Creator.total_goals_by_team(games_hash)).to be_a(Hash)
     end
 
     it 'creates a hash of a teams away and home goals in arrays' do
       stats_hash = Creator.stat_obj_creator(game_team_data)
       games_hash = Creator.game_obj_creator(game_data, stats_hash)
-      total_goals_by_team = Creator.total_goals_by_team(games_hash)
-
+      total_goals_by_team_hash = Creator.total_goals_by_team(games_hash)
       expected_away = [2, 3, 3, 4]
       expected_home = [3, 3, 3, 2, 1]
-      expect(Creator.total_goals_by_team_hash['6'][0]).to eq(expected_away)
-      expect(Creator.total_goals_by_team_hash['6'][1]).to eq(expected_home)
+      expect(creator.total_goals_by_team_hash[:'6'][0]).to eq(expected_away)
+      expect(creator.total_goals_by_team_hash[:'6'][1]).to eq(expected_home)
     end
   end
 end

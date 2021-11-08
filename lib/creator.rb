@@ -60,13 +60,13 @@ class Creator
   end
 
   def self.total_goals_by_team(games_hash)
-    total_goals_by_team_hash = {}
+    hash = {}
     games_hash.each_value do |game|
-      total_goals_by_team_hash[game.away_team_id.to_sym] ||= [[],[]]
-      total_goals_by_team_hash[game.home_team_id.to_sym] ||= [[],[]]
-      total_goals_by_team_hash[game.away_team_id.to_sym][0] << game.away_goals
-      total_goals_by_team_hash[game.home_team_id.to_sym][1] << game.home_goals
+      hash[game.away_team_id.to_sym] ||= [[],[]]
+      hash[game.home_team_id.to_sym] ||= [[],[]]
+      hash[game.away_team_id.to_sym][0] << game.away_goals
+      hash[game.home_team_id.to_sym][1] << game.home_goals
     end
-    total_goals_by_team_hash
+    hash
   end
 end
