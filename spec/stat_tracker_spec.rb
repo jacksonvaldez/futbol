@@ -2,12 +2,12 @@
 
 # SimpleCov.start
 # SimpleCov.command_name 'Unit Tests'
-require_relative './spec_helper'
-require_relative './lib/tg_stat'
-require_relative './lib/creator'
-require_relative './lib/stat_tracker'
-require_relative './lib/game'
-require_relative './lib/team'
+require_relative '../spec_helper'
+require_relative '../lib/tg_stat'
+require_relative '../lib/creator'
+require_relative '../lib/stat_tracker'
+require_relative '../lib/game'
+require_relative '../lib/team'
 
 RSpec.describe StatTracker do
   let!(:game_path)       {'./spec/fixtures/spec_games.csv'}
