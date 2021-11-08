@@ -1,7 +1,7 @@
 # require 'simplecov'
 # SimpleCov.start
 # SimpleCov.command_name 'Game Class Tests'
-require_relative './stat_helper'
+require_relative './spec_helper'
 require_relative '../lib/game'
 
 RSpec.describe Game do
