@@ -159,4 +159,31 @@ RSpec.describe StatTracker do
       end
     end
   end
+
+  describe 'Season Stats' do
+    it "#winningest_coach" do
+      expect(stattracker.winningest_coach("20122013")).to eq "Claude Julien"
+    end
+
+    it "#worst_coach" do
+      expect(stattracker.worst_coach("20122013")).to eq "John Tortorella"
+    end
+
+    it "#most_accurate_team" do
+      expect(stattracker.most_accurate_team("20122013")).to eq "New York City FC"
+    end
+
+    it "#least_accurate_team" do
+      expect(stattracker.least_accurate_team("20122013")).to eq "Sporting Kansas City"
+    end
+
+    it "#most_tackles" do
+      expect(stattracker.most_tackles("20122013")).to eq "FC Dallas"
+    end
+
+    it "#fewest_tackles" do
+      expect(stattracker.fewest_tackles("20122013")).to eq "Sporting Kansas City"
+    end
+  end
+
 end
