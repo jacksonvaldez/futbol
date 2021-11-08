@@ -1,7 +1,7 @@
-require 'simplecov'
-SimpleCov.start
-SimpleCov.command_name 'Team Class Tests'
-require './lib/team'
+# require 'simplecov'
+# SimpleCov.start
+# SimpleCov.command_name 'Team Class Tests'
+# require './lib/team'
 
 # RSpec.describe Team do
 #   #ask about team_creation because it is already tested
