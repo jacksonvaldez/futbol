@@ -5,16 +5,16 @@ module LeagueStats
   end
 
   def best_offense
-    total_goals_by_team = {}
-    creator.games_hash.each_value do |game|
-      total_goals_by_team[game.away_team_id.to_sym] ||= []
-      total_goals_by_team[game.home_team_id.to_sym] ||= []
-      total_goals_by_team[game.away_team_id.to_sym] << game.away_goals
-      total_goals_by_team[game.home_team_id.to_sym] << game.home_goals
-    end
+    # total_goals_by_team = {}
+    # creator.games_hash.each_value do |game|
+    #   total_goals_by_team[game.away_team_id.to_sym] ||= []
+    #   total_goals_by_team[game.home_team_id.to_sym] ||= []
+    #   total_goals_by_team[game.away_team_id.to_sym] << game.away_goals
+    #   total_goals_by_team[game.home_team_id.to_sym] << game.home_goals
+    # end
 
-    best_team_id = total_goals_by_team.max_by do |_,goals|
-      goals.sum.to_f / goals.length
+    best_team_id = creator.total_goals_by_team.max_by do |_,goals|
+      goals.flatten.sum.to_f / goals.flatten.length
     end
     creator.teams_hash[best_team_id.first.to_s].team_name
   end
