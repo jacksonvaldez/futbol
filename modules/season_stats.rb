@@ -40,7 +40,8 @@ module SeasonStats
     self.stats_by_group(season_id, 'coach').min_by do |coach, stats|
       wins = stats.sum { |stat| stat.result == "WIN" ? 1 : 0 }
       losses = stats.sum { |stat| stat.result == "LOSS" ? 1 : 0 }
-      wins.to_f / (wins + losses).to_f
+      ties = stats.sum { |stat| stat.result == "TIE" ? 1 : 0 }
+      wins.to_f / (wins + losses + ties).to_f
     end[0]
   end
 
