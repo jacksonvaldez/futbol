@@ -164,29 +164,43 @@ RSpec.describe StatTracker do
     end
   end
 
-  describe 'Season Stats' do
-    it "#winningest_coach" do
-      expect(stattracker.winningest_coach("20122013")).to eq("Claude Julien")
+  describe 'SeasonStats module methods' do
+
+    describe "#winningest_coach" do
+      it 'returns the name of the Coach with the best win percentage for the season' do
+        expect(stattracker.winningest_coach("20122013")).to eq("Claude Julien")
+      end
     end
 
-    it "#worst_coach" do
-      expect(stattracker.worst_coach("20122013")).to eq("John Tortorella")
+    describe "#worst_coach" do
+      it 'returns the name of the Coach with the worst win percentage for the season' do
+        expect(stattracker.worst_coach("20122013")).to eq("John Tortorella")
+      end
     end
 
-    it "#most_accurate_team" do
-      expect(stattracker.most_accurate_team("20122013")).to eq("New York City FC")
+    describe "#most_accurate_team" do
+      it 'returns the name of the Team with the best ratio of shots to goals for the season' do
+        expect(stattracker.most_accurate_team("20122013")).to eq("New York City FC")
+      end
     end
 
-    it "#least_accurate_team" do
-      expect(stattracker.least_accurate_team("20122013")).to eq("Sporting Kansas City")
+    describe "#least_accurate_team" do
+      it 'returns the name of the Team with the worst ratio of shots to goals for the season' do
+        expect(stattracker.least_accurate_team("20122013")).to eq("Sporting Kansas City")
+      end
     end
 
-    it "#most_tackles" do
-      expect(stattracker.most_tackles("20122013")).to eq("FC Dallas")
+    describe "#most_tackles" do
+      it 'returns the name of the Team with the most tackles in the season' do
+        expect(stattracker.most_tackles("20122013")).to eq("FC Dallas")
+      end
     end
 
-    it "#fewest_tackles" do
-      expect(stattracker.fewest_tackles("20122013")).to eq("Sporting Kansas City")
+    describe "#fewest_tackles" do
+      it 'returns the name of the Team with the fewest tackles in the season' do
+        expect(stattracker.fewest_tackles("20122013")).to eq("Sporting Kansas City")
+      end
     end
   end
+  
 end
