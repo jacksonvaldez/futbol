@@ -1,6 +1,6 @@
 module SeasonStats
-
-  def stats_by_group(season_id, group_by = nil) # Returns all stat objects for a given season
+  # Returns all stat objects for a given season
+  def stats_by_group(season_id, group_by = nil) 
     stats = creator.seasons_hash[season_id].map { |game| game.home_team_stat } + creator.seasons_hash[season_id].map { |game| game.away_team_stat }
     if group_by == 'team_id'
       stats.group_by { |stat| stat.team_id }
@@ -11,14 +11,16 @@ module SeasonStats
     end
   end
 
-  def team_ids_sorted_by_tackles(season_id) # Returns an array of team ids sorted by amount of tackles for a given season
+  # Returns an array of team ids sorted by amount of tackles for a given season
+  def team_ids_sorted_by_tackles(season_id) 
     team_stat_pairs = self.stats_by_group(season_id, "team_id").sort_by do |team_id, stats|
       stats.sum { |stat| stat.tackles }
     end
     team_stat_pairs.map { |pair| pair[0] }
   end
 
-  def team_ids_sorted_by_accuracy(season_id) # Returns an array of team ids sorted by accuracy for a given season
+  # Returns an array of team ids sorted by accuracy for a given season
+  def team_ids_sorted_by_accuracy(season_id) 
     team_stat_pairs = self.stats_by_group(season_id, "team_id").sort_by do |team_id, stats|
       shots = stats.sum { |stat| stat.shots }
       goals = stats.sum { |stat| stat.goals }
@@ -27,7 +29,8 @@ module SeasonStats
     team_stat_pairs.map { |pair| pair[0] }
   end
 
-  def winningest_coach(season_id) # Returns the name of the coach that had the highest win percentage for a given season
+  # Returns the name of the coach that had the highest win percentage for a given season
+  def winningest_coach(season_id) 
     self.stats_by_group(season_id, 'coach').max_by do |coach, stats|
       wins = stats.sum { |stat| stat.result == "WIN" ? 1 : 0 }
       losses = stats.sum { |stat| stat.result == "LOSS" ? 1 : 0 }
@@ -35,7 +38,8 @@ module SeasonStats
     end[0]
   end
 
-  def worst_coach(season_id) # Returns the name of the coach that had the lowest win percentage for a given season
+  # Returns the name of the coach that had the lowest win percentage for a given season
+  def worst_coach(season_id) 
     self.stats_by_group(season_id, 'coach').min_by do |coach, stats|
       wins = stats.sum { |stat| stat.result == "WIN" ? 1 : 0 }
       losses = stats.sum { |stat| stat.result == "LOSS" ? 1 : 0 }
@@ -43,7 +47,8 @@ module SeasonStats
     end[0]
   end
 
-  def most_accurate_team(season_id) # Returns the name of the team that had the highest goals:shots ratio for a given season
+  # Returns the name of the team that had the highest goals:shots ratio for a given season
+  def most_accurate_team(season_id) 
     team_id_most_accuracy = self.team_ids_sorted_by_accuracy(season_id).last
     creator.teams_hash[team_id_most_accuracy].team_name
   end
@@ -53,12 +58,14 @@ module SeasonStats
     creator.teams_hash[team_id_least_accuracy].team_name
   end
 
-  def most_tackles(season_id) # Returns the name of the team that has the most tackles for a given season
+  # Returns the name of the team that has the most tackles for a given season
+  def most_tackles(season_id) 
     team_id_most_tackles = self.team_ids_sorted_by_tackles(season_id).last
     creator.teams_hash[team_id_most_tackles].team_name
   end
 
-  def fewest_tackles(season_id) # Returns the name of the team that has the least tackles for a given season
+  # Returns the name of the team that has the least tackles for a given season
+  def fewest_tackles(season_id) 
     team_id_least_tackles = self.team_ids_sorted_by_tackles(season_id).first
     creator.teams_hash[team_id_least_tackles].team_name
   end

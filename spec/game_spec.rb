@@ -1,6 +1,3 @@
-# require 'simplecov'
-# SimpleCov.start
-# SimpleCov.command_name 'Game Class Tests'
 require_relative './spec_helper'
 require_relative '../lib/game'
 

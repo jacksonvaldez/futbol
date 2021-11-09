@@ -1,3 +1,0 @@
-class StatHelper
-  
-end

@@ -1,6 +1,3 @@
-# require 'simplecov'
-# SimpleCov.start
-# SimpleCov.command_name 'Team Game(TG) Stat Class Tests'
 require_relative './spec_helper'
 require_relative '../lib/tg_stat'
 require_relative '../lib/stat_tracker'
