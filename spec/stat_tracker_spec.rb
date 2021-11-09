@@ -1,6 +1,3 @@
-# require 'simplecov'
-# SimpleCov.start
-# SimpleCov.command_name 'Unit Tests'
 require_relative '../spec/spec_helper'
 require_relative '../lib/tg_stat'
 require_relative '../lib/creator'
@@ -113,83 +110,83 @@ RSpec.describe StatTracker do
     describe '#team_info' do
       it "returns the info for each team" do
         expected = {
-          "team_id" => "18",
-          "franchise_id" => "34",
-          "team_name" => "Minnesota United FC",
-          "abbreviation" => "MIN",
-          "link" => "/api/v1/teams/18"
-        }
-        expect(stattracker.team_info("18")).to eq expected
+                    "team_id" => "18",
+                    "franchise_id" => "34",
+                    "team_name" => "Minnesota United FC",
+                    "abbreviation" => "MIN",
+                    "link" => "/api/v1/teams/18"
+                   }
+
+        expect(stattracker.team_info("18")).to eq(expected)
       end
     end
 
     describe '#best_season' do
       it "returns the best season for the team id given" do
-        expect(stattracker.best_season("6")).to eq "20122013"
+        expect(stattracker.best_season("6")).to eq("20122013")
       end
     end
 
     describe '#worst_season' do
       it "returns the worst season for the team id given" do
-        expect(stattracker.worst_season("3")).to eq "20122013"
+        expect(stattracker.worst_season("3")).to eq("20122013")
       end
     end
 
     describe '#average_win_percentage' do
       it "returns the average win/loss percentage for the team id given" do
-        expect(stattracker.average_win_percentage("6")).to eq 1.0
+        expect(stattracker.average_win_percentage("6")).to eq(1.0)
       end
     end
 
     describe '#most_goals_scored' do
       it "returns the most goals scored for the team id given" do
-        expect(stattracker.most_goals_scored("6")).to eq 4
+        expect(stattracker.most_goals_scored("6")).to eq(4)
       end
     end
 
     describe '#fewest_goals_scored' do
       it "returns the least goals scored for the team id given" do
-        expect(stattracker.fewest_goals_scored("6")).to eq 1
+        expect(stattracker.fewest_goals_scored("6")).to eq(1)
       end
     end
 
     describe '#favorite_opponent' do
       it "returns the team name that has the most losses against the team id given" do
-        expect(stattracker.favorite_opponent("6")).to eq "Houston Dynamo"
+        expect(stattracker.favorite_opponent("6")).to eq("Houston Dynamo")
       end
     end
 
     describe '#rival' do
       it "returns the team name that has the most wins against the team id given" do
-        expect(stattracker.rival("5")).to eq "FC Dallas"
+        expect(stattracker.rival("5")).to eq("FC Dallas")
       end
     end
   end
 
   describe 'Season Stats' do
     it "#winningest_coach" do
-      expect(stattracker.winningest_coach("20122013")).to eq "Claude Julien"
+      expect(stattracker.winningest_coach("20122013")).to eq("Claude Julien")
     end
 
     it "#worst_coach" do
-      expect(stattracker.worst_coach("20122013")).to eq "John Tortorella"
+      expect(stattracker.worst_coach("20122013")).to eq("John Tortorella")
     end
 
     it "#most_accurate_team" do
-      expect(stattracker.most_accurate_team("20122013")).to eq "New York City FC"
+      expect(stattracker.most_accurate_team("20122013")).to eq("New York City FC")
     end
 
     it "#least_accurate_team" do
-      expect(stattracker.least_accurate_team("20122013")).to eq "Sporting Kansas City"
+      expect(stattracker.least_accurate_team("20122013")).to eq("Sporting Kansas City")
     end
 
     it "#most_tackles" do
-      expect(stattracker.most_tackles("20122013")).to eq "FC Dallas"
+      expect(stattracker.most_tackles("20122013")).to eq("FC Dallas")
     end
 
     it "#fewest_tackles" do
-      expect(stattracker.fewest_tackles("20122013")).to eq "Sporting Kansas City"
+      expect(stattracker.fewest_tackles("20122013")).to eq("Sporting Kansas City")
     end
   end
-
 end

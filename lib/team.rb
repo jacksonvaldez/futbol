@@ -1,5 +1,4 @@
 class Team
-
   attr_reader :team_id,
               :franchise_id,
               :team_name,
@@ -17,5 +16,4 @@ class Team
     @link = team_data[:link]
     @game_objects = team_games
   end
-
 end

@@ -1,5 +1,4 @@
 module GameStats
-
   def highest_total_score
     scores = creator.games_hash.values.map do |game|
       game.home_goals + game.away_goals

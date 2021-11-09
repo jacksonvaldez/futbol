@@ -23,6 +23,7 @@ class StatTracker
     @creator = Creator.create_objects(game_data, team_data, game_team_data)
   end
 
+  # Creates CSV objects to pass on to the Creator class.
   def self.from_csv(locations)
     game_data = CSV.read(locations[:games], headers: true, header_converters: :symbol)
     team_data = CSV.read(locations[:teams], headers: true, header_converters: :symbol)
