@@ -73,37 +73,53 @@ RSpec.describe StatTracker do
 
   describe 'GameStats module methods' do
 
-      it "highest_total_score" do
+    describe 'highest_total_score' do
+      it 'finds the game with the highest score' do
         expect(stattracker.highest_total_score).to eq(5)
       end
+    end
 
-      it "lowest_total_score" do
+    describe 'lowest_total_score' do
+      it 'finds the game with the lowest score' do
         expect(stattracker.lowest_total_score).to eq(1)
       end
+    end
 
-      it "percentage_home_wins" do
+    describe 'percentage_home_wins' do
+      it 'finds the percentage of home wins' do
         expect(stattracker.percentage_home_wins).to eq(0.7)
       end
+    end
 
-      it "percentage percentage_visitor_wins" do
+    describe 'percentage_visitor_wins' do
+      it 'finds the percentage of visitor wins' do
         expect(stattracker.percentage_visitor_wins).to eq(0.25)
       end
+    end
 
-      it "percentage_ties" do
+    describe 'percentage ties' do
+      it 'finds the percentage of games that tied' do
         expect(stattracker.percentage_ties).to eq(0.05)
       end
+    end
 
-      it "count_of_games_by_season" do
+    describe 'count_of_games_by_season' do
+      it 'counts the number of games by season' do
         expect(stattracker.count_of_games_by_season).to eq({"20122013"=>20})
       end
+    end
 
-      it "average_goals_per_game" do
+    describe 'average_goals_per_game' do
+      it 'finds the average goals scored per game' do
         expect(stattracker.average_goals_per_game).to eq(3.75)
       end
+    end
 
-      it "average goals by season" do
+    describe 'average goals by season' do
+      it 'finds the average goals per game by season' do
         expect(stattracker.average_goals_by_season).to eq({"20122013"=>3.75})
       end
+    end
   end
 
   describe 'TeamStats' do
