@@ -1,5 +1,5 @@
-require_relative '../lib/creator'
-require_relative '../lib/stat_tracker'
+require_relative './lib/creator'
+require_relative './lib/stat_tracker'
 
 game_path = './data/games.csv'
 team_path = './data/teams.csv'
@@ -18,30 +18,48 @@ futbol = File.new("site/index.html", "w")
 
 
 html = "
+    <!DOCTYPE html>
     <html>
       <head>
       <title> Futbol - 2110BE </title>
       <style>
       body {
-        background-image: url(https://user-images.githubusercontent.com/78194232/140588612-210bcab2-9351-43e4-87d9-883a7fb20bef.png);
+        background-image: url(https://upload.wikimedia.org/wikipedia/commons/1/1d/Football_Pallo_valmiina-cropped.jpg);
         color: white;
         font-size: 50px;
       }
-      h1 {text-align: center;}
+      h1 {
+        text-align: center;
+      }
+      .transparent-bg {
+        background-color: blue;
+        background-image: linear-gradient(to right, #1c87c9, #8ebf42);
+        opacity: 0.75;
+      }
       p {text-align: center;}
-      table, th, td {
-        font-size: 50px;
-        border: 10px solid red;
+      table {
+        border: 4px solid black;
+        background-color: black;
+        opacity: .75;
+      }
+      th { 
+        font-size: 30px;
         text-align: center;
         margin-left: auto;
         margin-right: auto;
-        }
+      }
+      td {
+        font-size: 12px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
       </style>
       </head>
         <body>
-          <h1>Futbol Stat Tracker</h1>
-          <p>-----------------------------------------------------------
-          <table>
+          <h1 class=\"transparent-bg\">Futbol Stat Tracker</h1>
+          <p>-----------------------------------
+          <table class=\"transparent-bg\">
             <tr>
               <th>Team Name</th>
               <th>Team ID Number</th>
