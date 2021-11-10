@@ -38,18 +38,23 @@ html = "
       }
       p {text-align: center;}
       table {
+        border-collapse: collapse;
         border: 4px solid black;
         background-color: black;
         opacity: .75;
+        margin-left: auto;
+        margin-right: auto;
       }
-      th { 
+      th {
+        border: 4px solid black;
         font-size: 30px;
         text-align: center;
         margin-left: auto;
         margin-right: auto;
       }
       td {
-        font-size: 12px;
+        border: 4px solid black;
+        font-size: 20px;
         text-align: center;
         margin-left: auto;
         margin-right: auto;
